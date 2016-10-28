@@ -41,6 +41,7 @@ export default class StatusUpdateEntry extends React.Component{
                   <span className="glyphicon glyphicon-user"></span>
                 </button>
                 <button type="button" className="btn btn-default">
+                  &#9786;
                 </button>
                 <button type="button" className="btn btn-default">
                   <span className="glyphicon glyphicon-pushpin"></span>
