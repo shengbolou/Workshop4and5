@@ -1,6 +1,43 @@
 import React from 'react';
 
 export default class StatusUpdateEntry extends React.Component{
+
+  constructor(props){
+    super(props);
+    this.state = {
+      value: ""
+    };
+  }
+
+  /**
+  * Called when the user clicks the 'post' button.
+  * Triggers the `onPost` prop if the post isn't empty, and clears
+  * the component.
+  */
+  handlePost(e){
+    e.preventDefault();
+    var statusUpdateText = this.state.value.trim();
+    if(statusUpdateText !== ""){
+      this.setState({value:""});
+      this.props.onPost(statusUpdateText);
+    }
+  }
+
+  /**
+  * Called when the user types a character into the status update box.
+  * @param e An Event object.
+  */
+  handleChange(e) {
+    // Prevent the event from "bubbling" up the DOM tree.
+    e.preventDefault();
+
+    // e.target is the React Virtual DOM target of the
+    // input event -- the <textarea> element. The textarea's
+    // `value` is the entire contents of what the user has
+    // typed in so far.
+    this.setState({value: e.target.value});
+  }
+
   render(){
     return(
       <div className="fb-status-update-entry panel panel-default">
@@ -26,7 +63,7 @@ export default class StatusUpdateEntry extends React.Component{
             <div className="media-body">
               <div className="form-group">
                 <textarea className="form-control" rows="2"
-                  placeholder="What's on your mind?">
+                  placeholder="What's on your mind?" value={this.state.value} onChange={(e)=>this.handleChange(e)}>
                 </textarea>
               </div>
             </div>
@@ -54,7 +91,7 @@ export default class StatusUpdateEntry extends React.Component{
                   <span className="glyphicon glyphicon-user"></span>
                   Friends <span className="caret"></span>
               </button>
-              <button type="button" className="btn btn-default">
+              <button type="button" className="btn btn-default" onClick={(e)=>this.handlePost(e)}>
                 Post
               </button>
             </div>
