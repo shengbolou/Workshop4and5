@@ -3,6 +3,11 @@ import {unixTimeToString} from '../util';
 import {Link} from 'react-router';
 
 export default class Comment extends React.Component{
+  constructor(props){
+    super(props);
+    
+  }
+
   render(){
     return(
       <div>
@@ -14,7 +19,7 @@ export default class Comment extends React.Component{
               {this.props.author.fullName}
           </Link>
             {this.props.children}
-            <br /><a href="#">Like</a> · <a href="#">Reply</a> ·
+            <br /><a href="#">Like {this.props.likeCounter.length}</a> · <a href="#">Reply</a> ·
               {unixTimeToString(this.props.postDate)}
         </div>
       </div>
