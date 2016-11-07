@@ -172,6 +172,7 @@ function getFeedItemSync(feedItemId) {
   // Resolve comment author.
   feedItem.comments.forEach((comment) => {
     comment.author = readDocument('users', comment.author);
+    comment.likeCounter = comment.likeCounter.map((id)=>readDocument('users',id));
   });
   return feedItem;
 }
