@@ -68,6 +68,10 @@ export default class FeedItem extends React.Component{
   render() {
     var data = this.state;
     var contents;
+    var likeButtonText = "Like";
+    if(this.didUserLike()){
+      likeButtonText = "Unlike";
+    }
     switch(data.type) {
       case "statusUpdate":
       // Create a StatusUpdate. Dynamically created
@@ -101,7 +105,7 @@ export default class FeedItem extends React.Component{
                 <li>
                   <a href="#" onClick={(e)=>this.handleLikeClick(e)}>
                     <span className="glyphicon glyphicon-thumbs-up">
-                    </span> Like
+                    </span> {likeButtonText}
                   </a>
                 </li>
                 <li>

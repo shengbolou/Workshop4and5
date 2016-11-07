@@ -54,6 +54,10 @@ export default class Comment extends React.Component{
   }
 
   render(){
+    var likeButtonText = "Like";
+    if(this.didUserLike()){
+      likeButtonText = "Unlike";
+    }
     return(
       <div>
         <div className="media-left media-top">
@@ -64,7 +68,7 @@ export default class Comment extends React.Component{
               {this.props.author.fullName}
           </Link>
             {this.props.children}
-            <br /><a href="#" onClick={(e)=>this.handleLikeClick(e)}>Like {this.state.likeCounter.length}</a> · <a href="#">Reply</a> ·
+            <br /><a href="#" onClick={(e)=>this.handleLikeClick(e)}>{likeButtonText} {this.state.likeCounter.length}</a> · <a href="#">Reply</a> ·
               {unixTimeToString(this.props.postDate)}
         </div>
       </div>
